@@ -94,9 +94,9 @@ export const Navigation = () => {
                                 </Button>
                             ))}
                         </Box>
-                        <Box sx={{ Border: 10, borderColor: 'white', borderRadius: 2, padding: 1, marginLeft : 8 }}>
+                        <Box sx={{ Border: 10, borderColor: 'white', borderRadius: 2, padding: 1, marginLeft: 8 }}>
                             <Link>
-                                <Button className="paymentbtn">
+                                <Button className="paymentbtn"  >
                                     <Typography textAlign="center">PRE ORDER $499.99</Typography>
                                 </Button>
                             </Link>
