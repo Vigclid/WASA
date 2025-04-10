@@ -11,15 +11,15 @@
     background: linear-gradient(  #7F8470,#7F8470 , #000000, #000000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transform: translateY(-70%);
+    
     z-index: 2;
   }
   
   .text-3 {
-    transform: translateY(-130%);
+    
     z-index: 3;
   }
 
   .text-4 {
-    transform: translateY(-75%);
+    
   }
