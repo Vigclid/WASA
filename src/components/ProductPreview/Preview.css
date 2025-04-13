@@ -21,5 +21,11 @@
   }
 
   .text-4 {
-    
+  }
+
+
+  .acc {
+    background-color: transparent !important;
+    color : white !important;
+    border: none !important;
   }

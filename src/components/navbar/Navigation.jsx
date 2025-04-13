@@ -31,7 +31,7 @@ export const Navigation = () => {
                     <Link to="/" style={{ textDecoration: 'none' }}>
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
 
-                            <img src="/images/logo.png" alt="Logo" style={{ height: 40, marginRight: 8 }} />
+                            <img src="images/logo.png" alt="Logo" style={{ height: 40, marginRight: 8 }} />
 
                             <Typography
                                 variant="h6"
