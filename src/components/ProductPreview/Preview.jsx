@@ -50,15 +50,15 @@ const AccordionSummary = styled((props) => (
     {
         transform: 'rotate(0deg)',
         textShadow: ' 0 0 10px rgb(186, 210, 0)',
-        color : '#F9FC7E',
+        color: '#F9FC7E',
     },
     [`& .${accordionSummaryClasses.expandIconWrapper}`]: {
-        color : 'white'
+        color: 'white'
     },
     [`& .${accordionSummaryClasses.content}.${accordionSummaryClasses.expanded}`]: {
 
         textShadow: ' 0 0 10px rgb(186, 210, 0)',
-        color : '#F9FC7E',
+        color: '#F9FC7E',
     },
     [`& .${accordionSummaryClasses.content}`]: {
         marginLeft: theme.spacing(1),
@@ -81,73 +81,76 @@ export const Preview = () => {
         setExpanded(newExpanded ? panel : false);
     }
     return (
-        <Box sx={{ mt: 10 }}>
+        <Box sx={{ mt: 10}}>
+            <Container sx={{ width: 'clamp(95%, 6vw, 80%)', position: '', minHeight: '100vh' }}>
 
-            <Container sx={{ width: 'clamp(95%, 6vw, 80%)' }}>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid size={8}>
-                        <Typography variant="h1" className="text-1" sx={{
-                            color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
+                <Grid item xs={12} md={8} sx={{ position: 'relative', zIndex: 1 }}>
+                    <Typography variant="h1" className="text-1" sx={{
+                        color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
 
-                        }}>CREATE YOUR</Typography>
-                        <Typography variant="h1" className="text-2" sx={{
-                            color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
-                            transform: {
-                                xs: 'translateY(-50%)', // trên mobile (extra small)
-                                sm: 'translateY(-70%)', // trên desktop nhỏ
-                                md: 'translateY(-70%)'  // desktop trung bình trở lên
-                            }
+                    }}>CREATE YOUR</Typography>
+                    <Typography variant="h1" className="text-2" sx={{
+                        color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
+                        transform: {
+                            xs: 'translateY(-50%)', // trên mobile (extra small)
+                            sm: 'translateY(-70%)', // trên desktop nhỏ
+                            md: 'translateY(-70%)'  // desktop trung bình trở lên
+                        }
 
-                        }}>CREATE YOUR</Typography>
-                        <Typography variant="h1" className="text-3" sx={{
-                            color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
-                            transform: {
-                                xs: 'translateY(-100%)', // điều chỉnh cho mobile
-                                sm: 'translateY(-130%)', // desktop nhỏ
-                                md: 'translateY(-130%)'
-                            }
+                    }}>CREATE YOUR</Typography>
+                    <Typography variant="h1" className="text-3" sx={{
+                        color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
+                        transform: {
+                            xs: 'translateY(-100%)', // điều chỉnh cho mobile
+                            sm: 'translateY(-130%)', // desktop nhỏ
+                            md: 'translateY(-130%)'
+                        }
 
-                        }}>CREATE YOUR</Typography>
-                        <Typography variant="h1" className="text-4" sx={{
-                            color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
-                            transform: {
-                                xs: 'translateY(-58%)',
-                                sm: 'translateY(-73%)',
-                                md: 'translateY(-73%)'
-                            }
-                        }}>OWN PLAY<br />STYLE</Typography>
-                    </Grid>
-                    <Grid>
-                        <Box
-                            component="video"
-                            src="videos/video1.mp4"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            sx={{
-                                position: 'absolute',
-                                top: 0,
-                                right: 0,
-                                zIndex: -1,
-                                objectFit: 'cover',
-                                height: {
-                                    xs: '50%',   // Mobile: chỉ chiếm 50% chiều cao
-                                    md: '100%',  // Desktop: chiếm toàn bộ
-                                },
-                                width: {
-                                    xs: '100%',
-                                    md: 'auto',
-                                },
-                            }}
-                        />
-
-                    </Grid>
+                    }}>CREATE YOUR</Typography>
+                    <Typography variant="h1" className="text-4" sx={{
+                        color: 'white', fontSize: { xs: 'clamp(2.1rem, 6vw, 6rem)', sm: 'clamp(2.5rem, 6vw, 6rem)', md: 'clamp(2.5rem, 6vw, 6rem)' },
+                        transform: {
+                            xs: 'translateY(-58%)',
+                            sm: 'translateY(-73%)',
+                            md: 'translateY(-73%)'
+                        }
+                    }}>OWN PLAY<br />STYLE</Typography>
                 </Grid>
+                <Grid item xs={12} md={4}>
+
+                    <Box
+                        component="video"
+                        src="videos/video1.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        sx={{
+                            mt : 8,
+                            position: 'absolute',
+                            right: 0,
+                            zIndex: -1,
+                            top: 0,
+                            objectFit: 'cover',
+                            height: {
+                                xs: '50%',
+                                md: '90%',
+                            },
+                            width: {
+                                xs: '100%',
+                                md: 'auto',
+                            },
+                        }}
+                    />
+
+
+
+                </Grid>
+
                 <Typography variant="h5" className="text-5" sx={{ color: 'gray', fontSize: 'clamp(1rem, 6vw, 1.2rem)' }}>Immersee yourself in increadinle virtual reality and expetiences</Typography>
             </Container>
 
-            <Container sx={{ width: 'clamp(95%, 6vw, 80%)', paddingTop: 50 }}>
+            <Box sx={{ width: 'clamp(95%, 6vw, 80%)', paddingTop: 1, position: 'relative', minHeight: '100vh' }}>
                 <Grid item xs={12} md={4}>
 
                     <Box
@@ -160,11 +163,11 @@ export const Preview = () => {
                         sx={{
                             position: 'absolute',
                             left: 0,
-                            transform: 'translateX(0%)',
+                            transform: 'translateY(-15%)',
                             objectFit: 'cover',
                             height: {
                                 xs: '50%',
-                                md: '100%',
+                                md: '90%',
                             },
                             width: {
                                 xs: '100%',
@@ -221,8 +224,8 @@ export const Preview = () => {
                         <Box sx={{
                             transform: {
                                 xs: 'translateY(-0%)',
-                                sm: 'translateY(-30%)',
-                                md: 'translateY(-30%)'
+                                sm: 'translateY(-10%)',
+                                md: 'translateY(-10%)'
                             }, width: {
                                 md: "500px",
                                 xs: "100%",
@@ -273,7 +276,7 @@ export const Preview = () => {
                     </Box>
                 </Grid>
 
-            </Container>
+            </Box>
         </Box>
     )
 }
