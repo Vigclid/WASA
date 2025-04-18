@@ -43,7 +43,7 @@ export const Navigation = () => {
                                     color: 'white',
                                 }}
                             >
-                                WASA
+                                DRAVOX
                             </Typography>
                         </Box>
                     </Link>
