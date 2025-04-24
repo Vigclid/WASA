@@ -25,7 +25,7 @@ export const Navigation = () => {
         setAnchorElUser(null);
     };
     return (
-        <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none', marginTop: 2 }}>
+        <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none', marginTop: 2}}>
             <Container maxWidth="lg" disableGutters={false} sx={{ px: { xs: 2, sm: 4 } }}>
                 <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
                     <Link to="/" style={{ textDecoration: 'none' }}>

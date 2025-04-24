@@ -6,4 +6,87 @@
     align-items: center;
     height: 100vh;
   }
-  
+
+  .corner {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border: 1px solid #000; /* Màu và độ dày của đường viền */
+  }
+
+/* Góc trên bên trái */
+.corner.TL {
+  top: -5px;
+  left: -5px;
+  border-right: none;
+  border-bottom: none;
+  border-top: 2px solid rgb(250, 255, 111);
+  border-left: 2px solid rgb(250, 255, 111);
+  animation: animateTL 3s infinite;
+}
+@keyframes animateTL {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(-5px, -5px);
+  }
+}
+/* Góc trên bên phải */
+.corner.TR {
+  top: -5px;
+  right: -5px;
+  border-left: none;
+  border-bottom: none;
+  border-top: 2px solid rgb(250, 255, 111);
+  border-right: 2px solid rgb(250, 255, 111);
+  animation: animateTR 3s infinite;
+}
+@keyframes animateTR {
+0%, 100% {
+  transform: translate(0px, 0px);
+}
+50% {
+  transform: translate(5px, -5px);
+}
+}
+
+
+/* Góc dưới bên trái */
+.corner.BL {
+  bottom: -5px;
+  left: -5px;
+  border-right: none;
+  border-top: none;
+  border-left: 2px solid rgb(250, 255, 111);
+  border-bottom: 2px solid rgb(250, 255, 111);
+  animation: animateBL 3s infinite;
+}
+@keyframes animateBL {
+0%, 100% {
+  transform: translate(0px, 0px);
+}
+50% {
+  transform: translate(-5px, 5px);
+}
+}
+
+/* Góc dưới bên phải */
+.corner.BR {
+  bottom: -5px;
+  right: -5px;
+  border-left: none;
+  border-top: none;
+  border-bottom: 2px solid rgb(250, 255, 111);
+  border-right: 2px solid rgb(250, 255, 111);
+  animation: animateBR 3s infinite;
+}
+@keyframes animateBR {
+0%, 100% {
+  transform: translate(0px, 0px);
+}
+50% {
+  transform: translate(5px, 5px);
+}
+}
+

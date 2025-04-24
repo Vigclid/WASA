@@ -1,5 +1,5 @@
 import React, { use, useEffect, useRef, useState } from 'react';
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { projects } from '../../data.js';
 import './ScrollTextSection.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -8,6 +8,7 @@ import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import MicNoneOutlinedIcon from '@mui/icons-material/MicNoneOutlined';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import { animate } from 'animejs';
+import InfiniteMarquee from './InfiniteMarquee.jsx';
 
 
 
@@ -102,50 +103,6 @@ const ScrollTextSection = () => {
     offset: ["start start", "end end"]
   });
 
-  // useEffect(() => {
-
-  //   const unsubscribe = scrollYProgress.onChange((latest) => {
-  //     console.log(latest);
-  //   });
-
-  // }, [scrollYProgress]);
-
-
-  const [line, setLine] = useState(null); // { x1, y1, x2, y2 }
-  const svgRef = useRef(null);
-
-  const feature1Ref = useRef(null);
-  const feature2Ref = useRef(null);
-  const feature3Ref = useRef(null);
-  const imageRef = useRef(null);
-
-  const handleHover = (feature, ref) => {
-    // const featureRect = ref.current.getBoundingClientRect();
-    // const imageRect = imageRef.current.getBoundingClientRect();
-
-    // const startX = featureRect.right;
-    // const startY = featureRect.top + featureRect.height / 2;
-
-    // // Target fixed point (ví dụ: tâm ảnh sản phẩm)
-    // const endX = imageRect.left + imageRect.width / 2;
-    // const endY = imageRect.top + imageRect.height / 2;
-
-    // setLine({ x1: startX, y1: startY, x2: endX, y2: endY });
-  };
-
-  useEffect(() => {
-    if (line && svgRef.current) {
-      const lineEl = svgRef.current.querySelector('line');
-      animate({
-        targets: lineEl,
-        strokeDashoffset: [animate.setDashoffset, 0],
-        easing: 'easeOutExpo',
-        duration: 800,
-        stroke: '#fff',
-        opacity: [0, 1],
-      });
-    }
-  }, [line]);
 
 
   return (
@@ -206,7 +163,6 @@ const ScrollTextSection = () => {
       }}>
 
         <Box
-          ref={imageRef}
           component="img"
           src='images/product4.png'
           alt="Testing"
@@ -222,21 +178,19 @@ const ScrollTextSection = () => {
           <MouseTracking />
         </Box>
         {/* Typography 1 - bên trái trên */}
-        <Box ref={feature1Ref} 
-          onMouseEnter={() => handleHover('feature1', feature1Ref)}
-          onMouseLeave={() => setLine(null)}
-        sx={{
-          position: 'absolute', left: '10%', top: '15%', width: '20%',
-          opacity: 0.5,
-          '&:hover': {
-            opacity: 1,
-            transition: 'opacity 0.3s ease-in-out',
-          },
-          '&:not(:hover)': {
+        <Box
+          sx={{
+            position: 'absolute', left: '10%', top: '15%', width: '20%',
             opacity: 0.5,
-            transition: 'opacity 0.3s ease-in-out',
-          },
-        }}>
+            '&:hover': {
+              opacity: 1,
+              transition: 'opacity 0.3s ease-in-out',
+            },
+            '&:not(:hover)': {
+              opacity: 0.5,
+              transition: 'opacity 0.3s ease-in-out',
+            },
+          }}>
           <ElectricBoltIcon sx={{
             color: 'rgb(250, 255, 111)',
             fontSize: '2rem',
@@ -383,34 +337,158 @@ const ScrollTextSection = () => {
             labore et dolore magna aliqua.
           </Typography>
         </Box>
-        <svg
-        ref={svgRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
-      >
-        {line && (
-          <line
-            x1={line.x1}
-            y1={line.y1}
-            x2={line.x2}
-            y2={line.y2}
-            stroke="white"
-            strokeWidth="2"
-            strokeDasharray="1000"
-            strokeDashoffset="1000"
-          />
-        )}
-      </svg>
+
       </Box>
 
+      <Box
+        sx={{ position: 'relative', backgroundColor: 'rgb(0, 0, 0)', height: '120vh' }} ml={10} mr={10}>
 
+        <Grid container ml={12} mr={12} >
+          <Grid item xs={12} md={6}>
+            <Typography variant="h2" sx={{
+              position: 'relative',
+              color: 'white',
+              fontWeight: 'bold',
+              zIndex: 1,
+              fontFamily: 'Andale Mono, monospace',
+            }}>
+              DISCOVER THE <br /> POSSIBILITIES <br />OF VR
+            </Typography>
+            <Typography variant="h6" sx={{
+              color: 'white',
+              fontSize: {
+                xs: '0.5rem',
+                sm: '0.7rem',
+                md: '1rem',
+                lg: '1rem',
+                xl: '1rem',
+              },
+              fontFamily: 'Andale Mono, monospace',
+              marginTop: '2.5%',
+              width: '40%',
+            }}>
+              lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua.
+            </Typography>
+
+            <Box position={'relative'} height={'100%'}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '20%',
+                  width: '539px',
+                  height: '358px',
+                  borderRadius: '16px',
+                  backgroundColor: 'rgb(78, 78, 78)',
+                  boxShadow: `0 4px 30px rgb(68, 68, 68)`,
+                }}
+              >
+              </Box>
+
+              <Button
+                sx={{
+                  position: 'absolute',
+                  top: '125%',
+                  left: '35%',
+                  backgroundColor: 'rgba(250, 255, 111, 0.3)',
+                  color: 'white',
+                  borderRadius: '0px',
+                  fontFamily: 'Andale Mono, monospace',
+                  fontSize: {
+                    xs: '0.4rem',
+                    sm: '0.4rem',
+                    md: '1rem',
+                    lg: '1rem',
+                    xl: '1rem',
+                  },
+                  '&:hover': {
+                    backgroundColor: 'rgba(250, 255, 111, 1)',
+                    color: 'black',
+                    boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
+                    transition: 'background-color 0.3s ease-in-out',
+                  }
+                }}
+              >
+                DARKNESS
+                <span className="corner TL"></span>
+                <span className="corner TR"></span>
+                <span className="corner BL"></span>
+                <span className="corner BR"></span>
+              </Button>
+
+
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={6}>
+
+            <Box position={'relative'} height={'100%'}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '30%',
+                  right: '30%',
+                  width: '410px',
+                  height: '517px',
+                  borderRadius: '16px',
+                  backgroundColor: 'rgb(78, 78, 78)',
+                  boxShadow: `0 4px 30px rgb(68, 68, 68)`,
+                }}
+              >
+                <Button
+                  sx={{
+                    position: 'absolute',
+                    top: '96%',
+                    left: '65%',
+                    backgroundColor: 'rgba(250, 255, 111, 0.3)',
+                    color: 'white',
+                    borderRadius: '0px',
+                    fontFamily: 'Andale Mono, monospace',
+                    fontSize: {
+                      xs: '0.4rem',
+                      sm: '0.4rem',
+                      md: '1rem',
+                      lg: '1rem',
+                      xl: '1rem',
+                    },
+                    '&:hover': {
+                      backgroundColor: 'rgba(250, 255, 111, 1)',
+                      color: 'black',
+                      boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
+                      transition: 'background-color 0.3s ease-in-out',
+                    }
+                  }}
+                >
+                  DravoX
+                  <span className="corner TL"></span>
+                  <span className="corner TR"></span>
+                  <span className="corner BL"></span>
+                  <span className="corner BR"></span>
+                </Button>
+              </Box>
+
+            </Box>
+
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box postion={'relative'}>
+          <InfiniteMarquee position={'relative'}/>
+          <Box
+           position={'relative'}
+          component={"img"}
+          src='images/productMarquee.png'
+          alt="Product Marquee"
+          sx={{
+            width: '100%',
+            height: 'auto',
+            top: 0,
+            left: 0,
+            zIndex: -1,
+          }}
+          />
+      </Box>
     </Box >
   );
 };
