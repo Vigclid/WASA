@@ -79,7 +79,7 @@ const TechSpec = () => {
                     <TableBody>
                         {rows.map((row) => (
                             <StyledTableRow
-                                key={row.name}
+                                key={row.title}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <StyledTableCell component="th" scope="row" sx={{ width: '30%', verticalAlign: 'top' }} >

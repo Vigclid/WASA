@@ -9,7 +9,6 @@ import Payment from './components/cryptoPayment/Payment';
 import { Analytics } from '@vercel/analytics/react';
 
 
-
 function App() {
   return (
     <>
