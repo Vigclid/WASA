@@ -9,6 +9,7 @@ import MicNoneOutlinedIcon from '@mui/icons-material/MicNoneOutlined';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import { animate } from 'animejs';
 import InfiniteMarquee from './InfiniteMarquee.jsx';
+import { Link } from 'react-router-dom';
 
 
 
@@ -77,7 +78,7 @@ const ProjectCard = ({ project, i, progress, range, target }) => {
           <MotionCardMedia
             component="img"
             src={project.src}
-            alt="Testing"
+            alt={project.title}
             style={{
               marginLeft: 'auto',
               width: '20%',
@@ -115,7 +116,7 @@ const ScrollTextSection = () => {
         })}
 
       </Box>
-      <Box sx={{ position: 'relative', height: '100vh' }}>
+      <Box id={"Abilities"}sx={{ position: 'relative', height: '100vh' }}>
         <Typography variant="h2" sx={{
           position: 'relative',
           top: '50%',
@@ -126,7 +127,7 @@ const ScrollTextSection = () => {
           textAlign: 'center',
           zIndex: 1,
         }}>
-          THE FULLY
+          THE ULTIMATE
         </Typography>
         <Typography variant="h2" sx={{
           position: 'relative',
@@ -138,7 +139,7 @@ const ScrollTextSection = () => {
           textAlign: 'center',
           zIndex: 1,
         }}>
-          IMMERSIVE VR
+          GAMING
         </Typography>
         <Typography variant="h2" sx={{
           position: 'relative',
@@ -167,13 +168,13 @@ const ScrollTextSection = () => {
           src='images/product4.png'
           alt="Testing"
           sx={{
-            width: '30%',
+            width: '40%',
           }}
         />
 
         <Box sx={{
           position: 'absolute',
-          top: '20%',
+          top: '15%',
         }}>
           <MouseTracking />
         </Box>
@@ -225,9 +226,8 @@ const ScrollTextSection = () => {
             fontFamily: 'Andale Mono, monospace',
             marginTop: '2.5%',
           }}>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
+            React instantly to every move. With ultra-low latency input,
+            our controllers give you the edge in fast-paced action and competitive play.
           </Typography>
         </Box>
 
@@ -278,9 +278,9 @@ const ScrollTextSection = () => {
             fontFamily: 'Andale Mono, monospace',
             marginTop: '2.5%',
           }}>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
+            Communicate clearly with your teammates using the integrated microphone.
+            No need for extra accessories—just plug in and play with voice chat ready.
+
           </Typography>
         </Box>
 
@@ -318,7 +318,7 @@ const ScrollTextSection = () => {
             fontFamily: 'Andale Mono, monospace',
             fontWeight: 'bold',
           }}>
-            360-DEGREE TRACKING
+            WIRELESS CONNECTIVITY
           </Typography>
           <Typography variant="h6" sx={{
             color: 'white',
@@ -332,9 +332,8 @@ const ScrollTextSection = () => {
             fontFamily: 'Andale Mono, monospace',
             marginTop: '2.5%',
           }}>
-            lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua.
+            Enjoy smooth, cable-free gaming with stable wireless performance.
+            Move freely and stay connected without lag or interruptions.
           </Typography>
         </Box>
 
@@ -352,7 +351,7 @@ const ScrollTextSection = () => {
               zIndex: 1,
               fontFamily: 'Andale Mono, monospace',
             }}>
-              DISCOVER THE <br /> POSSIBILITIES <br />OF VR
+              DISCOVER THE <br /> POWER OF GAMING <br /> WITH OUR CONTROLLER
             </Typography>
             <Typography variant="h6" sx={{
               color: 'white',
@@ -367,56 +366,59 @@ const ScrollTextSection = () => {
               marginTop: '2.5%',
               width: '40%',
             }}>
-              lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua.
+              Unlock a new level of gaming with our controller. Feel the precision, comfort, 
+              and responsive control, elevating your experience.
+
             </Typography>
 
             <Box position={'relative'} height={'100%'}>
               <Box
+                component="img"
+                src="images/product5.png"
+                alt="Description"
                 sx={{
                   position: 'absolute',
                   top: '20%',
                   width: '539px',
                   height: '358px',
                   borderRadius: '16px',
-                  backgroundColor: 'rgb(78, 78, 78)',
+                  objectFit: 'cover',
                   boxShadow: `0 4px 30px rgb(68, 68, 68)`,
                 }}
-              >
-              </Box>
+              />
 
-              <Button
-                sx={{
-                  position: 'absolute',
-                  top: '125%',
-                  left: '35%',
-                  backgroundColor: 'rgba(250, 255, 111, 0.3)',
-                  color: 'white',
-                  borderRadius: '0px',
-                  fontFamily: 'Andale Mono, monospace',
-                  fontSize: {
-                    xs: '0.4rem',
-                    sm: '0.4rem',
-                    md: '1rem',
-                    lg: '1rem',
-                    xl: '1rem',
-                  },
-                  '&:hover': {
-                    backgroundColor: 'rgba(250, 255, 111, 1)',
-                    color: 'black',
-                    boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
-                    transition: 'background-color 0.3s ease-in-out',
-                  }
-                }}
-              >
-                DARKNESS
-                <span className="corner TL"></span>
-                <span className="corner TR"></span>
-                <span className="corner BL"></span>
-                <span className="corner BR"></span>
-              </Button>
-
+              <Link to="/payment/dravox">
+                <Button
+                  sx={{
+                    position: 'absolute',
+                    top: '125%',
+                    left: '35%',
+                    backgroundColor: 'rgba(250, 255, 111, 0.3)',
+                    color: 'white',
+                    borderRadius: '0px',
+                    fontFamily: 'Andale Mono, monospace',
+                    fontSize: {
+                      xs: '0.4rem',
+                      sm: '0.4rem',
+                      md: '1rem',
+                      lg: '1rem',
+                      xl: '1rem',
+                    },
+                    '&:hover': {
+                      backgroundColor: 'rgba(250, 255, 111, 1)',
+                      color: 'black',
+                      boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
+                      transition: 'background-color 0.3s ease-in-out',
+                    }
+                  }}
+                >
+                  DARKNESS
+                  <span className="corner TL"></span>
+                  <span className="corner TR"></span>
+                  <span className="corner BL"></span>
+                  <span className="corner BR"></span>
+                </Button>
+              </Link>
 
             </Box>
           </Grid>
@@ -424,22 +426,27 @@ const ScrollTextSection = () => {
 
             <Box position={'relative'} height={'100%'}>
               <Box
+                component="img"
+                src="images/14.png"
+                alt="Ảnh minh họa"
                 sx={{
                   position: 'absolute',
                   top: '30%',
                   right: '30%',
-                  width: '410px',
-                  height: '517px',
+                  width: 'auto',
+                  height: '600px',
                   borderRadius: '16px',
-                  backgroundColor: 'rgb(78, 78, 78)',
-                  boxShadow: `0 4px 30px rgb(68, 68, 68)`,
+                  objectFit: 'cover',
+                  boxShadow: `0 4px 20px rgb(68, 68, 68)`,
                 }}
-              >
+              />
+
+              <Link to="/payment/dravox">
                 <Button
                   sx={{
                     position: 'absolute',
-                    top: '96%',
-                    left: '65%',
+                    top: '210%',
+                    right: '30%',
                     backgroundColor: 'rgba(250, 255, 111, 0.3)',
                     color: 'white',
                     borderRadius: '0px',
@@ -465,7 +472,7 @@ const ScrollTextSection = () => {
                   <span className="corner BL"></span>
                   <span className="corner BR"></span>
                 </Button>
-              </Box>
+              </Link>
 
             </Box>
 
@@ -474,12 +481,16 @@ const ScrollTextSection = () => {
       </Box>
 
       <Box postion={'relative'}>
-          <InfiniteMarquee position={'relative'}/>
-          <Box
-           position={'relative'}
-          component={"img"}
-          src='images/productMarquee.png'
+        <InfiniteMarquee position={'relative'} />
+        <Box
+          component="video"
+          src="videos/videobanner.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
           alt="Product Marquee"
+          position="relative"
           sx={{
             width: '100%',
             height: 'auto',
@@ -487,7 +498,8 @@ const ScrollTextSection = () => {
             left: 0,
             zIndex: -1,
           }}
-          />
+        />
+
       </Box>
     </Box >
   );

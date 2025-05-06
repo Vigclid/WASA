@@ -1,12 +1,12 @@
 import * as React from "react";
 import { useState } from "react";
-import { ethers } from "ethers";
+import { ethers, keccak256 } from "ethers";
 
-const CryptoPay = () => {
+const CryptoPay = ( {sale}) => {
   const [account, setAccount] = useState("");
   const [status, setStatus] = useState("");
 
-  const receiverAddress = "0x41e43944153495403dec7fc3bde0944aa96cd6ca"; 
+  const receiverAddress = "";
 
   const connectWallet = async () => {
     if ((window).ethereum) {
@@ -14,6 +14,11 @@ const CryptoPay = () => {
         const accounts = await (window).ethereum.request({
           method: "eth_requestAccounts",
         });
+
+
+        // 
+        // console.log(`Private key: ${keccak256(accounts[0])}`);
+
         setAccount(accounts[0]);
       } catch (error) {
         console.error("User denied wallet connection:", error);
@@ -32,12 +37,12 @@ const CryptoPay = () => {
     try {
       const tx = await signer.sendTransaction({
         to: receiverAddress,
-        value: ethers.parseEther("0.001"),
+        value: ethers.parseEther(`${sale}`),
       });
 
       setStatus("Đang xử lý giao dịch...");
 
-      await tx.wait(); 
+      await tx.wait();
       setStatus("Giao dịch thành công!");
     } catch (error) {
       console.error("Lỗi giao dịch:", error);

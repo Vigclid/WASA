@@ -62,7 +62,7 @@ const rows = [
 const TechSpec = () => {
 
     return (
-        <Box postion={'relative'} mt={20} mb={10} >
+        <Box postion={'relative'} mt={20} mb={10}  id={"Technologies"} >
             <Typography color="white" variant="h2" textAlign={'center'} fontFamily={'Andale Mono, monospace'} fontWeight={400} mb={10} >
                 Technical <br />
                 Specifications

@@ -13,14 +13,9 @@ export default function ContractUs() {
             mb={10}
         >
             <Typography
-                color="white"
-                variant="h2"
-                textAlign="center"
-                fontFamily="Andale Mono, monospace"
-                fontWeight={400}
-                mb={4}
+                color="white" variant="h2" textAlign={'center'} fontFamily={'Andale Mono, monospace'} fontWeight={400} mb={10}
             >
-                gets news & updates
+                Gets news <br /> Updates
             </Typography>
             <Box
                 display="flex"

@@ -3,9 +3,11 @@ import React from "react";
 import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from 'react-scroll';
+
 import './nav.css'
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Products', 'Abilities', 'Technologies'];
 
 export const Navigation = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
@@ -25,14 +27,15 @@ export const Navigation = () => {
         setAnchorElUser(null);
     };
     return (
-        <AppBar position="static" sx={{ backgroundColor: 'transparent', boxShadow: 'none', marginTop: 2}}>
+        <AppBar position="sticky" sx={{ backgroundColor: 'black', boxShadow: 'none', marginTop: 0 }}>
             <Container maxWidth="lg" disableGutters={false} sx={{ px: { xs: 2, sm: 4 } }}>
                 <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-
+                    <ScrollLink to="Products" smooth={true} duration={500}>
+                        <Box
+                            sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
+                            role="button"
+                        >
                             <img src="images/logo.png" alt="Logo" style={{ height: 40, marginRight: 8 }} />
-
                             <Typography
                                 variant="h6"
                                 noWrap
@@ -46,7 +49,8 @@ export const Navigation = () => {
                                 DRAVOX
                             </Typography>
                         </Box>
-                    </Link>
+                    </ScrollLink>
+
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                             <IconButton
@@ -79,20 +83,22 @@ export const Navigation = () => {
 
                         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
                             {pages.map((page) => (
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ color: 'white', textTransform: 'none' }}
-                                    className="btn-shine"
-                                >
-                                    {page}
-                                </Button>
+                                <ScrollLink key={page} to={page} smooth={true} duration={500}>
+                                    <Button
+                                        key={page}
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ color: 'white', textTransform: 'none' }}
+                                        className="btn-shine"
+                                    >
+                                        {page}
+                                    </Button>
+                                </ScrollLink>
                             ))}
                         </Box>
                         <Box sx={{ Border: 10, borderColor: 'white', borderRadius: 2, padding: 1, marginLeft: 8 }}>
-                            <Link>
+                            <Link to="/payment/dravox">
                                 <Button className="paymentbtn"  >
-                                    <Typography textAlign="center">PRE ORDER $499.99</Typography>
+                                    <Typography textAlign="center">BUY NOW |  $499.99</Typography>
                                 </Button>
                             </Link>
                         </Box>

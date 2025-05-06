@@ -11,12 +11,12 @@ export const MainPage = () => {
 
 
     return (
-        <Box className="w-100">
+        <Box className="w-100" id={"Products"}>
             <Box>
                 <Navigation />
-                <Preview />
-                <ScrollTextSection />
-                <TechSpec />
+                <Preview/>
+                <ScrollTextSection  />
+                <TechSpec/>
                 <ContractUs />
                 <Footer />
             </Box>

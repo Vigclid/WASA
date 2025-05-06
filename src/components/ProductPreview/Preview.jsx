@@ -8,6 +8,9 @@ import MuiAccordionSummary, {
     accordionSummaryClasses,
 } from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect } from "react";
 
 
 const Accordion = styled((props) => (
@@ -80,8 +83,21 @@ export const Preview = () => {
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     }
+
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "start 40%"],
+    });
+
+    const imageRote = useTransform(scrollYProgress, [0, 1], [45, 0]);
+    const imageScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
+    const imageOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+    const MotionBox = motion(Box);
+
     return (
-        <Box sx={{ mt: 10}}>
+        <Box sx={{ mt: 10 }}>
             <Container sx={{ width: 'clamp(95%, 6vw, 80%)', position: '', minHeight: '100vh' }}>
 
                 <Grid item xs={12} md={8} sx={{ position: 'relative', zIndex: 1 }}>
@@ -117,16 +133,15 @@ export const Preview = () => {
                     }}>OWN PLAY<br />STYLE</Typography>
                 </Grid>
                 <Grid item xs={12} md={4}>
-
                     <Box
                         component="video"
-                        src="videos/video1.mp4"
+                        src="videos/FloatingController.mp4"
                         autoPlay
                         muted
                         loop
                         playsInline
                         sx={{
-                            mt : 8,
+                            mt: 10,
                             position: 'absolute',
                             right: 0,
                             zIndex: -1,
@@ -134,7 +149,7 @@ export const Preview = () => {
                             objectFit: 'cover',
                             height: {
                                 xs: '50%',
-                                md: '90%',
+                                md: '70%',
                             },
                             width: {
                                 xs: '100%',
@@ -142,39 +157,42 @@ export const Preview = () => {
                             },
                         }}
                     />
-
-
-
                 </Grid>
-
-                <Typography variant="h5" className="text-5" sx={{ color: 'gray', fontSize: 'clamp(1rem, 6vw, 1.2rem)' }}>Immersee yourself in increadinle virtual reality and expetiences</Typography>
+                <Typography variant="h5" className="text-5" sx={{ color: 'gray', fontSize: 'clamp(1rem, 6vw, 1.2rem)' }}>
+                    Experience next-level gaming with our precision-crafted controllers.</Typography>
             </Container>
 
             <Box sx={{ width: 'clamp(95%, 6vw, 80%)', paddingTop: 1, position: 'relative', minHeight: '100vh' }}>
                 <Grid item xs={12} md={4}>
 
-                    <Box
-                        component="video"
-                        src="videos/video1.mp4"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
+                    <MotionBox
+                        component="img"
+                        src="images/product4.png"
+                        alt="Background"
+                        ref={containerRef}
                         sx={{
                             position: 'absolute',
                             left: 0,
-                            transform: 'translateY(-15%)',
+                            mt: 3,
+                            transform: `translateY(-15%)`,
                             objectFit: 'cover',
                             height: {
                                 xs: '50%',
-                                md: '90%',
+                                md: '60%',
                             },
                             width: {
                                 xs: '100%',
                                 md: 'auto',
                             },
                         }}
+                        style={{
+                            rotate: imageRote,
+                            scale: imageScale,
+                            opacity: imageOpacity
+                        }}
                     />
+
+
 
                 </Grid>
                 <Grid item xs={12} md={8} sx={{ position: 'relative', zIndex: 1 }}>
@@ -243,34 +261,37 @@ export const Preview = () => {
                                 </Accordion>
                                 <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} className="acc acc1">
                                     <AccordionSummary aria-controls="panel2d-content" id="01">
-                                        <Typography component="span">PLAY TOGETHER</Typography>
+                                        <Typography component="span">PLAY YOUR WAY</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography ml={8}>
-                                            Makes it easy to meet friends in VR. Share your adventures with friends and let them join the game as player two
+                                            Customize your controller settings and layout to match your unique style. Whether you're a casual player or a pro, take full control of how you play.
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className="acc acc2" sx={{}}>
+
+                                <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className="acc acc2">
                                     <AccordionSummary aria-controls="panel3d-content" id="02">
-                                        <Typography component="span">EXERCISE AND BEET YOUR OWN RECORDS</Typography>
+                                        <Typography component="span">MASTER EVERY MOVE</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography ml={8}>
-                                            Makes it easy to meet friends in VR. Share your adventures with friends and let them join the game as player two
+                                            Fine-tune sensitivity, response time, and button mapping. Our controllers are built to help you sharpen your skills and beat your personal best.
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
-                                <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} className="acc acc3" sx={{}}>
+
+                                <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} className="acc acc3">
                                     <AccordionSummary aria-controls="panel4d-content" id="03">
-                                        <Typography component="span">EXPLORE THE WORLD</Typography>
+                                        <Typography component="span">EXPLORE DIFFERENT GENRES</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography ml={8}>
-                                            Makes it easy to meet friends in VR. Share your adventures with friends and let them join the game as player two
+                                            Whether you're into racing, FPS, sports, or adventure, our controllers adapt to every genre. Build your ideal setup and dive into your favorite worlds.
                                         </Typography>
                                     </AccordionDetails>
                                 </Accordion>
+
                             </AccordionContainer>
                         </Box>
                     </Box>
