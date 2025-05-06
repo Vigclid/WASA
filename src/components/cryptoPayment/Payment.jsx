@@ -1,4 +1,4 @@
-import { Backdrop, Box, Button, Card, CardContent, CardMedia, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, MenuItem, Select, TextField, Typography, ThemeProvider, createTheme, Dialog } from '@mui/material';
+import { Backdrop, Box, Button, Card, CardContent, CardMedia, FormControl, FormControlLabel, FormGroup, Grid, InputLabel, MenuItem, Select, TextField, Typography, ThemeProvider, createTheme, Dialog, Container, Stack } from '@mui/material';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -213,9 +213,9 @@ export default function Payment() {
                         }
                     } catch (e) {
                         console.error('Lỗi khi kiểm tra trạng thái charge:', e);
-                        clearInterval(interval); 
+                        clearInterval(interval);
                     }
-                }, 2000); 
+                }, 2000);
             } catch (error) {
                 console.error('Error creating charge:', error);
                 // Close popup if error
@@ -243,281 +243,316 @@ export default function Payment() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box display="flex" minHeight={"100vh"} className="payment-root">
+            <Container maxWidth={false}
+                disableGutters
+                sx={{ minHeight: '100vh', width: '100%' }}
+            >
                 <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 100 }} open={isLoading}>
                     <CircularProgress color="inherit" />
                 </Backdrop>
                 {/* Left: Form */}
-                <Box flex={1} p={4} sx={{ backgroundColor: 'white' }}>
-                    <form onSubmit={formik.handleSubmit}>
-                        <Grid className="formregister" container spacing={2} direction="column">
-                            <Grid item xs={12}>
-                                <Typography variant="h5" gutterBottom fullWidth sx={{ fontWeight: 700 }}>
-                                    CHECKOUT FORM
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography variant='h6' gutterBottom fullWidth sx={{ fontWeight: 700 }}>
-                                    Contract
-                                </Typography>
-                                <TextField
-                                    fullWidth
-                                    label="Email"
-                                    name="email"
-                                    autoComplete="email"
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                />
-                                {formik.errors.email && (
-                                    <Typography variant="body2" color="red">
-                                        {formik.errors.email}
+                <Stack
+                    direction={{ xs: 'column-reverse', md: 'row' }}
+                    justifyContent="space-between"
+                    sx={{ flex: 1, minHeight: '100vh' }}
+                >
+                    <Box
+                        flex={1} p={4} sx={{ backgroundColor: 'white' }}
+                    >
+                        <form onSubmit={formik.handleSubmit}>
+                            <Grid className="formregister" container spacing={2} direction="column">
+                                <Grid item xs={12}>
+                                    <Typography variant="h5" gutterBottom fullWidth sx={{ fontWeight: 700 }}>
+                                        CHECKOUT FORM
                                     </Typography>
-                                )}
-                                <FormGroup>
-                                    <FormControlLabel control={<Checkbox defaultChecked />} label="Get notified about new products." />
-                                </FormGroup>
-                            </Grid>
-                            <Grid item xs={12} display={'flex'} gap={2}>
-
-                                <TextField
-                                    fullWidth
-                                    label="First Name"
-                                    name="firstName"
-                                    autoComplete="firstName"
-                                    value={formik.values.firstName}
-                                    onChange={formik.handleChange}
-                                />
-                                {formik.errors.firstName && (
-                                    <Typography variant="body2" color="red">
-                                        {formik.errors.firstName}
-                                    </Typography>
-                                )}
-                                <TextField
-                                    fullWidth
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="lastName"
-                                    value={formik.values.lastName}
-                                    onChange={formik.handleChange}
-                                />
-                                {formik.errors.lastName && (
-                                    <Typography variant="body2" color="red">
-                                        {formik.errors.lastName}
-                                    </Typography>
-                                )}
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Phone Number"
-                                    name="phone"
-                                    autoComplete="phone"
-                                    value={formik.values.phone}
-                                    onChange={formik.handleChange}
-                                />
-                                {formik.errors.phone && (
-                                    <Typography variant="body2" color="red">
-                                        {formik.errors.phone}
-                                    </Typography>
-                                )}
-                            </Grid>
-                            <Typography variant='h6' gutterBottom fullWidth sx={{ fontWeight: 700 }}>
-                                Billing Address
-                            </Typography>
-                            <Grid item xs={12} display={'flex'} gap={2}>
-
-                                <FormControl fullWidth>
-                                    <InputLabel>Country</InputLabel>
-                                    <Select
-                                        value={selCountry}
-                                        label="Country"
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            setSelCountry(value);
-                                            formik.setFieldValue('country', value);
-                                        }}
-                                        name="country"
-                                        autoComplete="country"
-                                    >
-                                        {countries.map(c => (
-                                            <MenuItem key={c.country} value={c.country}>
-                                                {c.country}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                    {formik.errors.country && (
-                                        <Typography variant="body2" color="red">
-                                            {formik.errors.country}
-                                        </Typography>
-                                    )}
-                                </FormControl>
-                                <FormControl fullWidth disabled={!states.length}>
-                                    <InputLabel>State/Province</InputLabel>
-                                    <Select
-                                        value={selState}
-                                        label="State/Province"
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            setSelState(value);
-                                            formik.setFieldValue('state', value);
-                                        }}
-                                    >
-                                        {states.map(s => (
-                                            <MenuItem key={s.name} value={s.name}>
-                                                {s.name}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                    {formik.errors.state && (
-                                        <Typography variant="body2" color="red">
-                                            {formik.errors.state}
-                                        </Typography>
-                                    )}
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <FormControl fullWidth disabled={!cities.length}>
-                                    <InputLabel>City</InputLabel>
-                                    <Select
-                                        value={selCity}
-                                        label="City"
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            setSelCity(value);
-                                            formik.setFieldValue('city', value);
-                                        }}
-                                    >
-                                        {cities.map(city => (
-                                            <MenuItem key={city} value={city}>
-                                                {city}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                    {formik.errors.city && (
-                                        <Typography variant="body2" color="red">
-                                            {formik.errors.city}
-                                        </Typography>
-                                    )}
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    fullWidth
-                                    label="Street address"
-                                    name="street"
-                                    autoComplete="street"
-                                    value={formik.values.street}
-                                    onChange={formik.handleChange}
-                                />
-                                {formik.errors.street && (
-                                    <Typography variant="body2" color="red">
-                                        {formik.errors.street}
-                                    </Typography>
-                                )}
-                            </Grid>
-                            <Button type="submit" variant="contained" fullWidth sx={{ fontWeight: 700, bgcolor: 'rgb(234, 151, 6)', '&:hover': { bgcolor: 'rgba(205, 132, 6, 1)' } }}>
-                                PAY NOW
-                            </Button>
-                        </Grid>
-                    </form>
-                </Box>
-                {/* Right: Product */}
-                <Box flex={1} p={4} sx={{ backgroundColor: 'rgb(36, 36, 36)' }}>
-                    <Typography variant="h5" gutterBottom color='white'>Preview product & price</Typography>
-                    <Card sx={{
-                        mt: 2, bgcolor: 'rgb(36, 36, 36)',
-                        boxShadow: '0 0 10px rgba(0, 0, 0, 1)',
-                        border: '1px solid rgba(0, 0, 0, 0.3)', borderRadius: '24px',
-                        display: 'flex', flexDirection: 'column', alignItems: 'center',
-                        gap: 5, p: 3,
-                    }}>
-                        <CardMedia
-                            component="img"
-                            image="/images/product4.png"
-                            alt="DravoX Controller"
-                            sx={{ width: '80%' }}
-                        />
-
-                        <CardContent >
-                            <Box display={'flex'}>
-                                <Box flex={1}>
-                                    <Typography variant="h5" color='rgb(255, 167, 15)'>DravoX Controller</Typography>
-                                    <Typography variant="body1" sx={{ mt: 2 }} color='white'>
-                                        Dravox Controller brings seamless control and precision,
-                                        built to elevate your gaming with comfort and power.
-                                    </Typography>
-                                </Box>
-                                <Box flex={1} ml={10}>
-                                    <Typography variant="h6" color='rgb(231, 255, 15)'>Billing's details</Typography>
-                                    <Typography variant="body2" color={discount !== 0 ? "rgb(0, 212, 215)" : "white"}>
-                                        {discount === 0 ? "No voucher found!" : `${discount}% discount, save ${((basePrice * amount) - sale).toFixed(2)} USD!`}
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant='h6' gutterBottom fullWidth sx={{ fontWeight: 700 }}>
+                                        Contract
                                     </Typography>
                                     <TextField
-                                        label="Quantity"
-                                        type="number"
                                         fullWidth
-                                        value={amount}
-                                        onChange={onAmountChange}
-                                        size="small"
-                                        InputProps={{
-                                            inputProps: {
-                                                max: 10000
-                                            }
-                                        }}
-                                        sx={{
-                                            mt: 1,
-                                            mb: 2,
-                                            maxWidth: 120,
-                                            '& .MuiInputLabel-root': {
-                                                color: 'rgba(0, 255, 251, 0.7)',
-                                                '&.Mui-focused': {
-                                                    color: 'rgba(0, 255, 251, 0.7)',
-                                                },
-                                            },
-                                            '& .MuiInputBase-input': {
-                                                color: 'white',
-                                                '&::placeholder': {
-                                                    color: 'rgba(255, 255, 255, 0.7)',
-                                                    opacity: 1,
-                                                }
-                                            },
-                                            '& .MuiInputBase-underline': {
-                                                '&:before': {
-                                                    borderBottomColor: 'white !important',
-                                                },
-                                                '&:after': {
-                                                    borderBottomColor: 'white !important',
-                                                },
-                                            },
-                                            '& .MuiOutlinedInput-notchedOutline': {
-                                                borderColor: 'white !important',
-                                            },
-                                            '&:hover .MuiOutlinedInput-notchedOutline': {
-                                                borderColor: 'white !important',
-                                            },
-                                            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                                                borderColor: 'white !important',
-                                            },
-                                        }}
+                                        label="Email"
+                                        name="email"
+                                        autoComplete="email"
+                                        value={formik.values.email}
+                                        onChange={formik.handleChange}
                                     />
-                                    <Typography variant="h6" color='white'>
-                                        Total: {sale.toFixed(2)} USD
-                                    </Typography>
+                                    {formik.errors.email && (
+                                        <Typography variant="body2" color="red">
+                                            {formik.errors.email}
+                                        </Typography>
+                                    )}
+                                    <FormGroup>
+                                        <FormControlLabel control={<Checkbox defaultChecked />} label="Get notified about new products." />
+                                    </FormGroup>
+                                </Grid>
+                                <Grid item xs={12} display={'flex'} gap={2}>
+
+                                    <TextField
+                                        fullWidth
+                                        label="First Name"
+                                        name="firstName"
+                                        autoComplete="firstName"
+                                        value={formik.values.firstName}
+                                        onChange={formik.handleChange}
+                                    />
+                                    {formik.errors.firstName && (
+                                        <Typography variant="body2" color="red">
+                                            {formik.errors.firstName}
+                                        </Typography>
+                                    )}
+                                    <TextField
+                                        fullWidth
+                                        label="Last Name"
+                                        name="lastName"
+                                        autoComplete="lastName"
+                                        value={formik.values.lastName}
+                                        onChange={formik.handleChange}
+                                    />
+                                    {formik.errors.lastName && (
+                                        <Typography variant="body2" color="red">
+                                            {formik.errors.lastName}
+                                        </Typography>
+                                    )}
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Phone Number"
+                                        name="phone"
+                                        autoComplete="phone"
+                                        value={formik.values.phone}
+                                        onChange={formik.handleChange}
+                                    />
+                                    {formik.errors.phone && (
+                                        <Typography variant="body2" color="red">
+                                            {formik.errors.phone}
+                                        </Typography>
+                                    )}
+                                </Grid>
+                                <Typography variant='h6' gutterBottom fullWidth sx={{ fontWeight: 700 }}>
+                                    Billing Address
+                                </Typography>
+                                <Grid item xs={12} display={'flex'} gap={2}>
+
+                                    <FormControl fullWidth>
+                                        <InputLabel>Country</InputLabel>
+                                        <Select
+                                            value={selCountry}
+                                            label="Country"
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setSelCountry(value);
+                                                formik.setFieldValue('country', value);
+                                            }}
+                                            name="country"
+                                            autoComplete="country"
+                                        >
+                                            {countries.map(c => (
+                                                <MenuItem key={c.country} value={c.country}>
+                                                    {c.country}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        {formik.errors.country && (
+                                            <Typography variant="body2" color="red">
+                                                {formik.errors.country}
+                                            </Typography>
+                                        )}
+                                    </FormControl>
+                                    <FormControl fullWidth disabled={!states.length}>
+                                        <InputLabel>State/Province</InputLabel>
+                                        <Select
+                                            value={selState}
+                                            label="State/Province"
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setSelState(value);
+                                                formik.setFieldValue('state', value);
+                                            }}
+                                        >
+                                            {states.map(s => (
+                                                <MenuItem key={s.name} value={s.name}>
+                                                    {s.name}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        {formik.errors.state && (
+                                            <Typography variant="body2" color="red">
+                                                {formik.errors.state}
+                                            </Typography>
+                                        )}
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControl fullWidth disabled={!cities.length}>
+                                        <InputLabel>City</InputLabel>
+                                        <Select
+                                            value={selCity}
+                                            label="City"
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setSelCity(value);
+                                                formik.setFieldValue('city', value);
+                                            }}
+                                        >
+                                            {cities.map(city => (
+                                                <MenuItem key={city} value={city}>
+                                                    {city}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        {formik.errors.city && (
+                                            <Typography variant="body2" color="red">
+                                                {formik.errors.city}
+                                            </Typography>
+                                        )}
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        fullWidth
+                                        label="Street address"
+                                        name="street"
+                                        autoComplete="street"
+                                        value={formik.values.street}
+                                        onChange={formik.handleChange}
+                                    />
+                                    {formik.errors.street && (
+                                        <Typography variant="body2" color="red">
+                                            {formik.errors.street}
+                                        </Typography>
+                                    )}
+                                </Grid>
+                                <Button type="submit" variant="contained" fullWidth sx={{ fontWeight: 700, bgcolor: 'rgb(234, 151, 6)', '&:hover': { bgcolor: 'rgba(205, 132, 6, 1)' } }}>
+                                    PAY NOW
+                                </Button>
+                            </Grid>
+                        </form>
+                    </Box>
+                    {/* Right: Product */}
+                    <Box
+                        flex={1} p={4} sx={{ backgroundColor: 'rgb(36, 36, 36)' }}
+
+                    >
+                        <Typography variant="h5" gutterBottom color='white'>Preview product & price</Typography>
+                        <Card
+                            sx={{
+                                mt: 2,
+                                bgcolor: 'rgb(36, 36, 36)',
+                                boxShadow: '0 0 10px rgba(0, 0, 0, 1)',
+                                border: '1px solid rgba(0, 0, 0, 0.3)',
+                                borderRadius: '24px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                gap: 5,
+                                p: 3,
+                            }}
+                        >
+                            <CardMedia
+                                component="img"
+                                image="/images/product4.png"
+                                alt="DravoX Controller"
+                                sx={{
+                                    width: '100%',
+                                    maxWidth: 300,
+                                    height: 'auto',
+                                    objectFit: 'contain',
+                                }}
+                            />
+
+                            <CardContent sx={{ width: '100%' }}>
+                                <Box
+                                    display="flex"
+                                    flexDirection={{ xs: 'column', sm: 'row' }}
+                                    gap={4}
+                                >
+                                    <Box flex={1}>
+                                        <Typography variant="h5" color="rgb(255, 167, 15)">
+                                            DravoX Controller
+                                        </Typography>
+                                        <Typography variant="body1" sx={{ mt: 2 }} color="white">
+                                            Dravox Controller brings seamless control and precision, built
+                                            to elevate your gaming with comfort and power.
+                                        </Typography>
+                                    </Box>
+
+                                    <Box flex={1}>
+                                        <Typography variant="h6" color="rgb(231, 255, 15)">
+                                            Billing's details
+                                        </Typography>
+                                        <Typography
+                                            variant="body2"
+                                            color={discount !== 0 ? 'rgb(0, 212, 215)' : 'white'}
+                                        >
+                                            {discount === 0
+                                                ? 'No voucher found!'
+                                                : `${discount}% discount, save ${(
+                                                    basePrice * amount -
+                                                    sale
+                                                ).toFixed(2)} USD!`}
+                                        </Typography>
+
+                                        <TextField
+                                            label="Quantity"
+                                            type="number"
+                                            fullWidth
+                                            value={amount}
+                                            onChange={onAmountChange}
+                                            size="small"
+                                            InputProps={{
+                                                inputProps: {
+                                                    max: 10000,
+                                                },
+                                            }}
+                                            sx={{
+                                                mt: 1,
+                                                mb: 2,
+                                                maxWidth: 120,
+                                                '& .MuiInputLabel-root': {
+                                                    color: 'rgba(0, 255, 251, 0.7)',
+                                                    '&.Mui-focused': {
+                                                        color: 'rgba(0, 255, 251, 0.7)',
+                                                    },
+                                                },
+                                                '& .MuiInputBase-input': {
+                                                    color: 'white',
+                                                    '&::placeholder': {
+                                                        color: 'rgba(255, 255, 255, 0.7)',
+                                                        opacity: 1,
+                                                    },
+                                                },
+                                                '& .MuiOutlinedInput-notchedOutline': {
+                                                    borderColor: 'white !important',
+                                                },
+                                                '&:hover .MuiOutlinedInput-notchedOutline': {
+                                                    borderColor: 'white !important',
+                                                },
+                                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                                    borderColor: 'white !important',
+                                                },
+                                            }}
+                                        />
+
+                                        <Typography variant="h6" color="white">
+                                            Total: {sale.toFixed(2)} USD
+                                        </Typography>
+                                    </Box>
                                 </Box>
-                            </Box>
+                            </CardContent>
+                        </Card>
 
-
-                        </CardContent>
-                    </Card>
-
-                </Box>
+                    </Box>
+                </Stack>
                 <Dialog open={showSuccess} aria-labelledby="success-dialog" className="dialog-custom">
                     <div className="success-dialog status-dialog">
                         <h2>Payment Successful!</h2>
                         <p>You will be redirected to main page...</p>
                     </div>
                 </Dialog>
-            </Box>
+            </Container>
         </ThemeProvider>
     );
 }
