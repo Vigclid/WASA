@@ -6,6 +6,7 @@ import { Navigation } from './components/navbar/Navigation';
 import { Route, Routes } from 'react-router-dom';
 import { MainPage } from './components/MainPage';
 import Payment from './components/cryptoPayment/Payment';
+import { Analytics } from '@vercel/analytics/react';
 
 
 
@@ -14,6 +15,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainPage />} />
       <Route path="/payment/:voucher" element={<Payment />} />
+      <Analytics />
     </Routes>
     
   );
