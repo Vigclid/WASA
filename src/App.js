@@ -12,13 +12,15 @@ import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/payment/:voucher" element={<Payment />} />
+    <>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/payment/:voucher" element={<Payment />} />
+      </Routes>
       <Analytics />
-    </Routes>
-    
+    </>
   );
 }
+
 
 export default App;
