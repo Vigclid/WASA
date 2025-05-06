@@ -10,7 +10,7 @@ import { SparkLineChart } from '@mui/x-charts';
 export default function Footer() {
   const [activeUsers, setActiveUsers] = useState(Math.floor(Math.random() * 1241) + 20); // Số người dùng online ban đầu
   const [totalProducts] = useState(300); // Tổng số sản phẩm cố định
-  const [soldProducts, setSoldProducts] = useState(Math.floor(Math.random() * 100) + 50); // Số sản phẩm đã bán ban đầu
+  const [soldProducts, setSoldProducts] = useState(81); // Số sản phẩm đã bán ban đầu
 
   // Tính toán sản phẩm còn lại (derived value)
   const availableProducts = totalProducts - soldProducts;
