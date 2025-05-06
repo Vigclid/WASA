@@ -457,7 +457,7 @@ export default function Payment() {
                                 alt="DravoX Controller"
                                 sx={{
                                     width: '100%',
-                                    maxWidth: 300,
+                                    maxWidth: 500,
                                     height: 'auto',
                                     objectFit: 'contain',
                                 }}
