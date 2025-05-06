@@ -77,7 +77,7 @@ export default function Payment() {
     const [amount, setAmount] = useState(1);
     useEffect(() => {
         switch (voucher.voucher) {
-            case 'abcxyz123':
+            case 'earlyjoin10':
                 setSale(((basePrice * amount) * 0.9));
                 setDiscount(10);
                 break;
