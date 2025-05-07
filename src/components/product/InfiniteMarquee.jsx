@@ -35,29 +35,50 @@ export default function SmoothMarquee() {
                 <ArrowForwardIosIcon sx={{ color: 'rgb(248, 252, 119)' }} />
             </Typography>
             <Link to="/payment/dravox">
-                <Button variant="contained" sx={{
-                    ml: 2, mr: 2,
-                    backgroundColor: 'rgba(250, 255, 111, 0.3)',
-                    color: 'white',
-                    borderRadius: '0px',
-                    fontFamily: 'Andale Mono, monospace',
-                    fontSize: {
-                        xs: '0.4rem',
-                        sm: '0.4rem',
-                        md: '1rem',
-                        lg: '1rem',
-                        xl: '1rem',
-                    },
-                    '&:hover': {
-                        backgroundColor: 'rgba(250, 255, 111, 1)',
-                        color: 'black',
-                        boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
-                        transition: 'background-color 0.3s ease-in-out',
-                    }
-                }}>
+                <Button
+                    variant="contained"
+                    sx={{
+                        ml: 2,
+                        mr: 2,
+                        backgroundColor: 'rgba(250, 255, 111, 0.3)',
+                        color: 'white',
+                        borderRadius: 0,
+                        fontFamily: 'Andale Mono, monospace',
+                        textTransform: 'none',
+                        fontSize: {
+                            xs: '0.7rem',  // Mobile
+                            sm: '0.8rem',  // Small tablets
+                            md: '1rem',    // Desktop
+                            lg: '1rem',
+                            xl: '1.1rem',
+                        },
+                        px: {
+                            xs: 1.5,
+                            sm: 2,
+                            md: 3,
+                        },
+                        py: {
+                            xs: 0.5,
+                            sm: 0.7,
+                            md: 1,
+                        },
+                        minWidth: {
+                            xs: 100,
+                            sm: 130,
+                            md: 160,
+                        },
+                        '&:hover': {
+                            backgroundColor: 'rgba(250, 255, 111, 1)',
+                            color: 'black',
+                            boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
+                            transition: 'background-color 0.3s ease-in-out',
+                        },
+                    }}
+                >
                     TRY IT NOW
                 </Button>
             </Link>
+
             <Typography
                 variant="h4"
                 component="span"

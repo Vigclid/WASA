@@ -116,7 +116,8 @@ const ScrollTextSection = () => {
         })}
 
       </Box>
-      <Box id={"Abilities"}sx={{ position: 'relative', height: '100vh' }}>
+
+      <Box id={"Abilities"} sx={{ position: 'relative', height: '100vh' }}>
         <Typography variant="h2" sx={{
           position: 'relative',
           top: '50%',
@@ -174,9 +175,12 @@ const ScrollTextSection = () => {
 
         <Box sx={{
           position: 'absolute',
-          top: '15%',
+          top: {
+            xs: '36%',
+            sm: '15%'
+          },
         }}>
-          <MouseTracking />
+        <MouseTracking />
         </Box>
         {/* Typography 1 - bên trái trên */}
         <Box
@@ -340,76 +344,92 @@ const ScrollTextSection = () => {
       </Box>
 
       <Box
-        sx={{ position: 'relative', backgroundColor: 'rgb(0, 0, 0)', height: '120vh' }} ml={10} mr={10}>
+        sx={{
+          position: 'relative',
+          backgroundColor: 'black',
+          ml: { xs: 2, sm: 4, md: 10 },
+          mr: { xs: 2, sm: 4, md: 10 },
+          px: { xs: 2, sm: 4, md: 10 },
+          py: { xs: 6, md: 12 },
+        }}
+      >
+        <Grid container spacing={4}>
+          {/* Text Section */}
+          <Grid item xs={12}>
+            <Box sx={{ maxWidth: '800px', mx: 'auto' }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  fontFamily: 'Andale Mono, monospace',
+                  mb: 2,
+                  fontSize: {
+                    xs: '1.4rem',
+                    sm: '2rem',
+                    md: '2.5rem',
+                    lg: '3rem',
+                  },
+                }}
+              >
+                DISCOVER THE <br /> POWER OF GAMING <br /> WITH OUR CONTROLLER
+              </Typography>
+              <Typography
+                sx={{
+                  color: 'white',
+                  fontSize: {
+                    xs: '0.8rem',
+                    sm: '0.9rem',
+                    md: '1rem',
+                  },
+                  fontFamily: 'Andale Mono, monospace',
+                  mb: 4,
+                }}
+              >
+                Unlock a new level of gaming with our controller. Feel the precision, comfort,
+                and responsive control, elevating your experience.
+              </Typography>
+            </Box>
+          </Grid>
 
-        <Grid container ml={12} mr={12} >
+          {/* Left Image - product5.png */}
           <Grid item xs={12} md={6}>
-            <Typography variant="h2" sx={{
-              position: 'relative',
-              color: 'white',
-              fontWeight: 'bold',
-              zIndex: 1,
-              fontFamily: 'Andale Mono, monospace',
-            }}>
-              DISCOVER THE <br /> POWER OF GAMING <br /> WITH OUR CONTROLLER
-            </Typography>
-            <Typography variant="h6" sx={{
-              color: 'white',
-              fontSize: {
-                xs: '0.5rem',
-                sm: '0.7rem',
-                md: '1rem',
-                lg: '1rem',
-                xl: '1rem',
-              },
-              fontFamily: 'Andale Mono, monospace',
-              marginTop: '2.5%',
-              width: '40%',
-            }}>
-              Unlock a new level of gaming with our controller. Feel the precision, comfort, 
-              and responsive control, elevating your experience.
-
-            </Typography>
-
-            <Box position={'relative'} height={'100%'}>
+            <Box position="relative" width="100%" maxWidth="540px" mx="auto">
               <Box
                 component="img"
                 src="images/product5.png"
                 alt="Description"
+
                 sx={{
-                  position: 'absolute',
-                  top: '20%',
-                  width: '539px',
-                  height: '358px',
+                  width: '100%',
+                  height: 'auto',
                   borderRadius: '16px',
                   objectFit: 'cover',
                   boxShadow: `0 4px 30px rgb(68, 68, 68)`,
+
                 }}
               />
-
               <Link to="/payment/dravox">
                 <Button
                   sx={{
                     position: 'absolute',
-                    top: '125%',
-                    left: '35%',
+                    bottom: -12,
+                    right: 10,
                     backgroundColor: 'rgba(250, 255, 111, 0.3)',
                     color: 'white',
                     borderRadius: '0px',
                     fontFamily: 'Andale Mono, monospace',
                     fontSize: {
-                      xs: '0.4rem',
-                      sm: '0.4rem',
+                      xs: '0.5rem',
+                      sm: '0.7rem',
                       md: '1rem',
-                      lg: '1rem',
-                      xl: '1rem',
                     },
                     '&:hover': {
                       backgroundColor: 'rgba(250, 255, 111, 1)',
                       color: 'black',
                       boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
                       transition: 'background-color 0.3s ease-in-out',
-                    }
+                    },
                   }}
                 >
                   DARKNESS
@@ -419,51 +439,56 @@ const ScrollTextSection = () => {
                   <span className="corner BR"></span>
                 </Button>
               </Link>
-
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
 
-            <Box position={'relative'} height={'100%'}>
+          {/* Right Image - 14.png */}
+          <Grid item xs={12} md={6}>
+            <Box position="relative" width="100%" maxWidth="600px" mx="auto">
               <Box
                 component="img"
                 src="images/14.png"
                 alt="Ảnh minh họa"
+
                 sx={{
-                  position: 'absolute',
-                  top: '30%',
-                  right: '30%',
-                  width: 'auto',
-                  height: '600px',
+                  width: {
+                    xs: '100%',
+                    sm: '60%',
+                  },
+                  height: 'auto',
                   borderRadius: '16px',
                   objectFit: 'cover',
                   boxShadow: `0 4px 20px rgb(68, 68, 68)`,
+                  float: {
+                    sm: 'left',
+                    md: 'right',
+                  },
                 }}
               />
-
               <Link to="/payment/dravox">
                 <Button
                   sx={{
                     position: 'absolute',
-                    top: '210%',
-                    right: '30%',
+                    right: 10,
+                    top: {
+                      xs: 610, // Trên mobile, nút sẽ nằm dưới ảnh (100% là chiều cao của ảnh)
+                      sm: 620,    // Trên tablet và các màn hình lớn hơn, đặt giá trị cố định cho top
+                    },
                     backgroundColor: 'rgba(250, 255, 111, 0.3)',
                     color: 'white',
                     borderRadius: '0px',
                     fontFamily: 'Andale Mono, monospace',
                     fontSize: {
-                      xs: '0.4rem',
-                      sm: '0.4rem',
+                      xs: '0.5rem',
+                      sm: '0.7rem',
                       md: '1rem',
-                      lg: '1rem',
-                      xl: '1rem',
                     },
                     '&:hover': {
                       backgroundColor: 'rgba(250, 255, 111, 1)',
                       color: 'black',
                       boxShadow: '0 0 10px rgba(250, 255, 111, 1)',
                       transition: 'background-color 0.3s ease-in-out',
-                    }
+                    },
                   }}
                 >
                   DravoX
@@ -473,9 +498,7 @@ const ScrollTextSection = () => {
                   <span className="corner BR"></span>
                 </Button>
               </Link>
-
             </Box>
-
           </Grid>
         </Grid>
       </Box>

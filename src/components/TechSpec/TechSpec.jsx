@@ -1,4 +1,4 @@
-import { Box, Typography, decomposeColor, styled } from "@mui/material";
+import { Box, Typography, decomposeColor, styled, useMediaQuery } from "@mui/material";
 import * as React from 'react';
 import Table, { tableClasses } from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useTheme } from '@mui/material/styles';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -61,52 +62,109 @@ const rows = [
 ];
 const TechSpec = () => {
 
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
     return (
-        <Box postion={'relative'} mt={20} mb={10}  id={"Technologies"} >
-            <Typography color="white" variant="h2" textAlign={'center'} fontFamily={'Andale Mono, monospace'} fontWeight={400} mb={10} >
+        <Box position="relative" mt={20} mb={10} id="Technologies">
+            <Typography
+                color="white"
+                variant="h3"
+                textAlign="center"
+                fontFamily="Andale Mono, monospace"
+                fontWeight={400}
+                mb={10}
+            >
                 Technical <br />
                 Specifications
             </Typography>
-            <TableContainer component={Paper} postion={'relative'} sx={{ borderRadius: '0px' }}>
-                <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
-                    <TableHead>
-                        <StyledTableRow>
-                            <StyledTableCell></StyledTableCell>
-                            <StyledTableCell></StyledTableCell>
-                            <StyledTableCell></StyledTableCell>
-                        </StyledTableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow
-                                key={row.title}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <StyledTableCell component="th" scope="row" sx={{ width: '30%', verticalAlign: 'top' }} >
-                                    <Typography variant="h6" fontFamily={'Andale Mono, monospace'} color={'rgba(255, 255, 255, 0.7)'}> {row.number} </Typography>
-                                </StyledTableCell>
-                                <StyledTableCell align="left" sx={{ width: '40%', verticalAlign: 'top' }} >
-                                    <Typography variant="h6" fontFamily={'Andale Mono, monospace'} color={'rgba(255, 255, 255, 0.7)'}> {row.title} </Typography>
-                                </StyledTableCell>
-                                <StyledTableCell align="left">
-                                    {row.desc.map((item, index) => (
-                                        <li key={index} style={{ fontFamily: 'Andale Mono, monospace' }}>
-                                            <Typography
-                                                fontFamily="Andale Mono, monospace"
-                                                display="inline"
-                                                variant="h6"
-                                            >
-                                                {item}
-                                            </Typography>
-                                        </li>
-                                    ))}
-                                </StyledTableCell>
 
+            {isMobile ? (
+                // Mobile layout - Card style
+                <Box display="flex" flexDirection="column" gap={4}>
+                    {rows.map((row) => (
+                        <Paper
+                            key={row.title}
+                            sx={{
+                                backgroundColor: '#1e1e1e',
+                                padding: 2,
+                                borderRadius: 2,
+                                color: 'white',
+                            }}
+                        >
+                            <Typography
+                                variant="h6"
+                                fontFamily="Andale Mono, monospace"
+                                color="rgba(255, 255, 255, 0.7)"
+                            >
+                                {row.number}. {row.title}
+                            </Typography>
+                            <ul style={{ paddingLeft: '1rem' }}>
+                                {row.desc.map((item, index) => (
+                                    <li key={index} style={{ fontFamily: 'Andale Mono, monospace' }}>
+                                        <Typography variant="body1" fontFamily="Andale Mono, monospace">
+                                            {item}
+                                        </Typography>
+                                    </li>
+                                ))}
+                            </ul>
+                        </Paper>
+                    ))}
+                </Box>
+            ) : (
+                // Desktop layout - Table
+                <TableContainer component={Paper} position="relative" sx={{ borderRadius: '0px' }}>
+                    <Table sx={{ minWidth: 650 }} size="medium" aria-label="a dense table">
+                        <TableHead>
+                            <StyledTableRow>
+                                <StyledTableCell></StyledTableCell>
+                                <StyledTableCell></StyledTableCell>
+                                <StyledTableCell></StyledTableCell>
                             </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                            {rows.map((row) => (
+                                <StyledTableRow
+                                    key={row.title}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <StyledTableCell
+                                        component="th"
+                                        scope="row"
+                                        sx={{ width: '30%', verticalAlign: 'top' }}
+                                    >
+                                        <Typography
+                                            variant="h6"
+                                            fontFamily="Andale Mono, monospace"
+                                            color="rgba(255, 255, 255, 0.7)"
+                                        >
+                                            {row.number}
+                                        </Typography>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="left" sx={{ width: '40%', verticalAlign: 'top' }}>
+                                        <Typography
+                                            variant="h6"
+                                            fontFamily="Andale Mono, monospace"
+                                            color="rgba(255, 255, 255, 0.7)"
+                                        >
+                                            {row.title}
+                                        </Typography>
+                                    </StyledTableCell>
+                                    <StyledTableCell align="left">
+                                        {row.desc.map((item, index) => (
+                                            <li key={index} style={{ fontFamily: 'Andale Mono, monospace' }}>
+                                                <Typography fontFamily="Andale Mono, monospace" display="inline" variant="h6">
+                                                    {item}
+                                                </Typography>
+                                            </li>
+                                        ))}
+                                    </StyledTableCell>
+                                </StyledTableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            )}
         </Box>
     )
 }

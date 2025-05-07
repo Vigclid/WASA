@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, IconButton, Button, Typography } from '@mui/material';
+import { Box, IconButton, Button, Typography, useTheme, useMediaQuery } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -60,49 +60,64 @@ export default function Footer() {
 
   }, [totalProducts]); // Phụ thuộc vào totalProducts nếu nó có thể thay đổi (ở đây thì không, nhưng là best practice)
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
     <Box
       component="footer"
       sx={{
         display: 'flex',
-        justifyContent: 'space-between',
+        flexDirection: isMobile ? 'column' : 'row',
+        justifyContent: isMobile ? 'center' : 'space-between',
         alignItems: 'center',
         px: 4,
         py: 2,
+        gap: isMobile ? 2 : 0,
         bgcolor: 'rgba(10, 12, 10, 0.9)',
         color: 'grey.100',
+        textAlign: isMobile ? 'center' : 'left',
       }}
     >
       {/* Social media icons on the left */}
       <Box>
-        <IconButton href="https://x.com/XDravoX" target='_blank' aria-label="X" sx={{ color: 'inherit' }}>
+        <IconButton href="https://x.com/XDravoX" target="_blank" aria-label="X" sx={{ color: 'inherit' }}>
           <XIcon />
         </IconButton>
-
       </Box>
 
-      {/* Three clickable buttons in the center */}
-      <Box ml={10} sx={{ fontSize: '0.8em', textAlign: 'right', display: 'flex', alignItems: 'flex-end' }}>
-        <Typography variant="body2" color="inherit" mr={2}>
-          <span style={{ color: 'rgb(221, 0, 255)' }}>Live Users:</span> <span style={{ fontWeight: 'bold' }}>{activeUsers}</span>
+      {/* Center stats */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isMobile ? 'center' : 'flex-end',
+          justifyContent: 'center',
+          fontSize: '0.8em',
+          gap: 1,
+        }}
+      >
+        <Typography variant="body2" color="inherit">
+          <span style={{ color: 'rgb(221, 0, 255)' }}>Live Users:</span>{' '}
+          <strong>{activeUsers}</strong>
         </Typography>
         <Typography variant="body2" color="inherit">
-          Products: <span style={{ fontWeight: 'bold' }}>{soldProducts}</span>
-          <span style={{ color: 'red' }}> Sold </span>
-          / <span style={{ fontWeight: 'bold' }}>{availableProducts}</span>
+          Products: <strong>{soldProducts}</strong>
+          <span style={{ color: 'red' }}> Sold </span> /{' '}
+          <strong>{availableProducts}</strong>
           <span style={{ color: 'rgb(0, 255, 115)' }}> Avail</span>
         </Typography>
         <SparkLineChart
           data={[6, 4, 5, 9, 3, 9, 11, 15]}
           height={30}
-          width={120}
+          width={isMobile ? 100 : 120}
           showTooltip
           showHighlight
           color="rgb(179, 255, 48)"
         />
       </Box>
-      {/* Copyright text on the right */}
-      <Typography variant="body2">
+
+      {/* Copyright */}
+      <Typography variant="body2" sx={{ mt: isMobile ? 2 : 0 }}>
         © {new Date().getFullYear()} DravoX. All rights reserved.
       </Typography>
     </Box>

@@ -142,7 +142,10 @@ export const Preview = () => {
                         playsInline
                         sx={{
                             mt: 10,
-                            position: 'absolute',
+                            position: {
+                                xs: 'relative',
+                                md: 'absolute',
+                            },
                             right: 0,
                             zIndex: -1,
                             top: 0,
@@ -171,7 +174,10 @@ export const Preview = () => {
                         alt="Background"
                         ref={containerRef}
                         sx={{
-                            position: 'absolute',
+                            position: {
+                                xs: 'relative',
+                                md: 'absolute',
+                            },
                             left: 0,
                             mt: 3,
                             transform: `translateY(-15%)`,

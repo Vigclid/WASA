@@ -76,8 +76,16 @@ const MouseTracking = () => {
                 ref={clockRef}
                 sx={{
                     position: 'relative',
-                    width: 50,
-                    height: 50,
+                    width: {
+                        xs: '20px',  // Kích thước đồng hồ trên màn hình nhỏ (mobile)
+                        sm: '50px',  // Kích thước đồng hồ trên tablet
+                        md: '60px',  // Kích thước đồng hồ trên màn hình lớn
+                    },
+                    height: {
+                        xs: '20px',  // Kích thước chiều cao đồng hồ trên màn hình nhỏ
+                        sm: '50px',
+                        md: '60px',
+                    },
                     borderRadius: '50%',
                     border: '2px solid rgb(250, 255, 111)',
                     boxShadow: 3,
@@ -88,8 +96,16 @@ const MouseTracking = () => {
                     ref={arrowRef}
                     sx={{
                         position: 'absolute',
-                        width: 4,
-                        height: '30%',
+                        width: {
+                            xs: '2px',  // Kích thước mũi tên trên màn hình nhỏ
+                            sm: '4px',  // Kích thước mũi tên trên tablet
+                            md: '6px',  // Kích thước mũi tên trên màn hình lớn
+                        },
+                        height: {
+                            xs: '25%',  // Mũi tên có chiều cao nhỏ trên mobile
+                            sm: '30%',  // Mũi tên lớn hơn trên tablet
+                            md: '35%',  // Mũi tên lớn nhất trên màn hình lớn
+                        },
                         borderRadius: '20%',
                         bgcolor: 'rgb(250, 255, 111)',
                         top: '50%',
@@ -98,10 +114,9 @@ const MouseTracking = () => {
                         transform: 'translate(-50%, -100%)',
                     }}
                 />
-
             </Box>
-
         </Box>
+
     );
 };
 
