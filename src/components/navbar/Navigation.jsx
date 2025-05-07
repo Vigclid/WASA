@@ -4,6 +4,7 @@ import { useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
+import { scroller } from 'react-scroll';
 
 import './nav.css'
 
@@ -74,7 +75,19 @@ export const Navigation = () => {
                                 sx={{ display: { xs: 'block', md: 'none' } }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <MenuItem
+                                        key={page}
+                                        onClick={() => {
+                                            handleCloseNavMenu(); // đóng menu trước
+                                            setTimeout(() => {
+                                                scroller.scrollTo(page, {
+                                                    smooth: true,
+                                                    duration: 500,
+                                                    offset: -70, // nếu có navbar fixed
+                                                });
+                                            }, 100); // chờ menu đóng
+                                        }}
+                                    >
                                         <Typography textAlign="center">{page}</Typography>
                                     </MenuItem>
                                 ))}
