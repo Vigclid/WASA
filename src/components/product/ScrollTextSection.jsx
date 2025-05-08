@@ -453,7 +453,8 @@ const ScrollTextSection = () => {
                 sx={{
                   width: {
                     xs: '100%',
-                    sm: '60%',
+                    md : '90%',
+                    lg: '60%',
                   },
                   height: 'auto',
                   borderRadius: '16px',
@@ -461,7 +462,8 @@ const ScrollTextSection = () => {
                   boxShadow: `0 4px 20px rgb(68, 68, 68)`,
                   float: {
                     sm: 'left',
-                    md: 'right',
+                    md: 'left',
+                    lg: 'right',
                   },
                 }}
               />
@@ -471,8 +473,9 @@ const ScrollTextSection = () => {
                     position: 'absolute',
                     right: 10,
                     top: {
-                      xs: 610, // Trên mobile, nút sẽ nằm dưới ảnh (100% là chiều cao của ảnh)
-                      sm: 620,    // Trên tablet và các màn hình lớn hơn, đặt giá trị cố định cho top
+                      xs: 610, 
+                      md: 940,
+                      lg: 620,    
                     },
                     backgroundColor: 'rgba(250, 255, 111, 0.3)',
                     color: 'white',

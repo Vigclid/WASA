@@ -144,7 +144,8 @@ export const Preview = () => {
                             mt: 10,
                             position: {
                                 xs: 'relative',
-                                md: 'absolute',
+                                sm: 'relative',
+                                lg: 'absolute',
                             },
                             right: 0,
                             zIndex: -1,
@@ -152,11 +153,11 @@ export const Preview = () => {
                             objectFit: 'cover',
                             height: {
                                 xs: '50%',
-                                md: '70%',
+                                lg: '70%',
                             },
                             width: {
                                 xs: '100%',
-                                md: 'auto',
+                                lg: 'auto',
                             },
                         }}
                     />
@@ -184,11 +185,13 @@ export const Preview = () => {
                             objectFit: 'cover',
                             height: {
                                 xs: '50%',
-                                md: '60%',
+                                sm: '30%',
+                                lg: '60%',
                             },
                             width: {
                                 xs: '100%',
-                                md: 'auto',
+                                sm: 'auto',
+                                lg: 'auto',
                             },
                         }}
                         style={{
