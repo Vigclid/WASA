@@ -10,7 +10,7 @@ import { SparkLineChart } from '@mui/x-charts';
 export default function Footer() {
   const [activeUsers, setActiveUsers] = useState(Math.floor(Math.random() * 1241) + 20); // Số người dùng online ban đầu
   const [totalProducts] = useState(300); // Tổng số sản phẩm cố định
-  const [soldProducts, setSoldProducts] = useState(87); // Số sản phẩm đã bán ban đầu
+  const [soldProducts, setSoldProducts] = useState(101); // Số sản phẩm đã bán ban đầu
 
   // Tính toán sản phẩm còn lại (derived value)
   const availableProducts = totalProducts - soldProducts;
@@ -107,7 +107,7 @@ export default function Footer() {
           <span style={{ color: 'rgb(0, 255, 115)' }}> Avail</span>
         </Typography>
         <SparkLineChart
-          data={[6, 4, 5, 9, 3, 9, 11, 18]}
+          data={[8, 6, 7, 11, 5, 11, 13, 21]}
           height={30}
           width={isMobile ? 100 : 120}
           showTooltip
